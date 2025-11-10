@@ -1,0 +1,120 @@
+<link href="https://fonts.cdnfonts.com/css/super-mario-256" rel="stylesheet">
+
+<!-- ===== HOME SCREEN ===== -->
+<div id="home-screen">
+  <h1 class="title">Mario’s Space Deck</h1>
+
+  <!-- Music Control (front page) -->
+
+
+  <section class="card center">
+    <p>Welcome to the galactic 21 arena! Click below to start the Game.</p>
+    <button id="playBtn" class="play-btn">▶ Play Game</button>
+  </section>
+
+  <!-- Game Description & Rules -->
+  <section class="card">
+    <h2>Description</h2>
+    <p>Arcade-style fun with a starry vibe. Challenge friends by competing to aim for 21!</p>
+    <h2>How to Play</h2>
+    <ul>
+      <li><strong>Deal / Pass / Stand</strong> — choose your action each turn</li>
+      <li><strong>Restart</strong> — start a new game anytime</li>
+      <li>Highest ≤ 21 wins</li>
+      <li>Glowing buttons guide the current player</li>
+    </ul>
+  </section>
+
+  <!-- Reviews -->
+  <section class="card">
+    <h2>⭐ Player Reviews</h2>
+    <form id="reviewForm">
+      <div class="stars">
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+      </div>
+      <textarea id="reviewInput" placeholder="Write your review here…"></textarea>
+      <button id="submitReview" class="submit-btn" type="button">Post Review</button>
+    </form>
+    <div id="reviewList"></div>
+  </section>
+</div>
+
+<!-- ===== GAME SCREEN ===== -->
+<div id="game-screen" style="display:none;">
+  <h1 class="title">Mario’s Space Deck — Play 21!</h1>
+
+  <!-- Music Toggle -->
+ 
+
+  <section class="card center">
+    <p id="message"> Press Deal to start!</p>
+
+   <div id="players">
+  <div class="player" id="player1">
+    <h2 class="player-title">
+      <img src="https://pngimg.com/d/mario_PNG125.png" alt="Mario" class="spin-char">
+      Mario
+    </h2>
+    <div class="cards"></div>
+    <p>Total: <span class="total">0</span></p>
+  </div>
+
+  <div class="player" id="player2">
+    <h2 class="player-title">
+      <img src="https://i.postimg.cc/cLszDmSm/luigi.png" alt="Luigi" class="spin-char">
+      Luigi
+    </h2>
+    <div class="cards"></div>
+    <p>Total: <span class="total">0</span></p>
+  </div>
+
+  <div class="player" id="player3">
+    <h2 class="player-title">
+      <img src="https://i.postimg.cc/L6VCZ111/yoshi.png" alt="Yoshi" class="spin-char">
+      Yoshi
+    </h2>
+    <div class="cards"></div>
+    <p>Total: <span class="total">0</span></p>
+  </div>
+
+  <div class="player" id="dealer">
+    <h2 class="player-title">
+      <img src="https://i.postimg.cc/BbBgDrtr/peach-dealer.png" alt="Dealer" class="spin-char">
+      Dealer
+    </h2>
+    <div class="cards"></div>
+    <p>Total: <span class="total">0</span></p>
+  </div>
+</div>
+
+
+    <div class="button-container">
+      <button id="dealBtn" class="Deal-Button">Deal</button>
+      <button id="passBtn" class="Pass-Button">Pass</button>
+      <button id="standBtn" class="Stand-Button">Stand</button>
+      <button id="restartBtn" class="Restart-Button">Restart</button>
+      <button id="returnBtn" class="Return-Button">⬅ Return</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2> Game Rules</h2>
+    <ul>
+      <li>Try to reach <strong>21</strong> without going over.</li>
+      <li>Players take turns to deal, pass, or stand.</li>
+      <li>Dealer draws until at least 21.</li>
+      <li>The closest total to 21 wins!</li>
+    </ul>
+  </section>
+</div>
+
+<!-- Background Music -->
+<audio id="bgm" preload="auto" loop>
+  <source src="https://www.orangefreesounds.com/wp-content/uploads/2014/10/Mario-theme-song.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
