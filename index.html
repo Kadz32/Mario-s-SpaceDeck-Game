@@ -4,30 +4,29 @@
 <div id="home-screen">
   <h1 class="title">Mario’s Space Deck</h1>
 
-  <!-- Music Control (front page) -->
-
-
   <section class="card center">
     <p>Welcome to the galactic 21 arena! Click below to start the Game.</p>
     <button id="playBtn" class="play-btn">▶ Play Game</button>
   </section>
 
-  <!-- Game Description & Rules -->
+  <!-- ===== Description ===== -->
   <section class="card">
     <h2>Description</h2>
     <p>Arcade-style fun with a starry vibe. Challenge friends by competing to get as close to 21 as possible without going over.</p>
+
     <h2>How to Play</h2>
     <ul>
-      <li><strong> Deal / Pass / Stand to control your turn. </strong></li>
-        <li><strong> Hit Restart anytime to start a new round!</strong></li>
-      <li><strong>21 and below wins.</strong> </li>
-      <li>Glowing buttons guide the current player</li>
+      <li><strong> Deal / Pass / Stand </strong> to control your turn.</li>
+      <li><strong> Restart </strong> anytime to start a new round!</li>
+      <li><strong> 21 and below wins. </strong></li>
+      <li>Glowing buttons show the current player.</li>
     </ul>
   </section>
 
-  <!-- Reviews -->
+  <!-- ===== Reviews ===== -->
   <section class="card">
     <h2>⭐ Player Reviews</h2>
+
     <form id="reviewForm">
       <div class="stars">
         <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
@@ -36,9 +35,11 @@
         <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
         <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
       </div>
+
       <textarea id="reviewInput" placeholder="Write your review here…"></textarea>
       <button id="submitReview" class="submit-btn" type="button">Post Review</button>
     </form>
+
     <div id="reviewList"></div>
   </section>
 </div>
@@ -47,53 +48,52 @@
 <div id="game-screen" style="display:none;">
   <h1 class="title">Mario’s Space Deck — Play 21!</h1>
 
-  
- 
-<!-- Characters images next to their names -->
-
   <section class="card center">
     <p id="message">🎮 Press Deal to start!</p>
-   <div id="players">
-  <div class="player" id="player1">
-    <h2 class="player-title">
-      <img src="https://pngimg.com/d/mario_PNG125.png" alt="Mario" class="spin-char">
-      Mario
-    </h2>
-    <div class="cards"></div>
-    <p>Total: <span class="total">0</span></p>
-  </div>
 
-  <div class="player" id="player2">
-    <h2 class="player-title">
-      <img src="https://i.postimg.cc/cLszDmSm/luigi.png" alt="Luigi" class="spin-char">
-      Luigi
-    </h2>
-    <div class="cards"></div>
-    <p>Total: <span class="total">0</span></p>
-  </div>
+    <div id="players">
 
-  <div class="player" id="player3">
-    <h2 class="player-title">
-      <img src="https://i.postimg.cc/L6VCZ111/yoshi.png" alt="Yoshi" class="spin-char">
-      Yoshi
-    </h2>
-    <div class="cards"></div>
-    <p>Total: <span class="total">0</span></p>
-  </div>
+      <!-- Mario -->
+      <div class="player" id="player1">
+        <h2 class="player-title">
+          <img src="assets/mario.png" alt="Mario" class="spin-char">
+          Mario
+        </h2>
+        <div class="cards"></div>
+        <p>Total: <span class="total">0</span></p>
+      </div>
 
-<div class="player" id="dealer">
-  <h2 class="player-title">
-    <img src="https://i.postimg.cc/BbBgDrtr/peach-dealer.png" 
-         alt="Dealer Peach" 
-         class="spin-char">
-    Dealer
-  </h2>
-  <div class="cards"></div>
-  <p>Total: <span class="total">0</span></p>
-</div>
+      <!-- Luigi -->
+      <div class="player" id="player2">
+        <h2 class="player-title">
+          <img src="assets/luigi.png" alt="Luigi" class="spin-char">
+          Luigi
+        </h2>
+        <div class="cards"></div>
+        <p>Total: <span class="total">0</span></p>
+      </div>
 
-</div>
+      <!-- Yoshi -->
+      <div class="player" id="player3">
+        <h2 class="player-title">
+          <img src="assets/yoshi.png" alt="Yoshi" class="spin-char">
+          Yoshi
+        </h2>
+        <div class="cards"></div>
+        <p>Total: <span class="total">0</span></p>
+      </div>
 
+      <!-- Dealer (Peach-Inspired Dealer) -->
+      <div class="player" id="dealer">
+        <h2 class="player-title">
+          <img src="assets/dealer-peach.png" alt="Dealer Peach" class="spin-char">
+          Dealer
+        </h2>
+        <div class="cards"></div>
+        <p>Total: <span class="total">0</span></p>
+      </div>
+
+    </div>
 
     <div class="button-container">
       <button id="dealBtn" class="Deal-Button">Deal</button>
@@ -109,20 +109,22 @@
     <ul>
       <li>Try to reach <strong>21</strong> without going over.</li>
       <li>Players take turns to deal, pass, or stand.</li>
-      <li>Dealer draws until at least 21.</li>
-      <li>The closest total to 21 wins!</li>
+      <li>The dealer draws until reaching at least 21.</li>
+      <li>The closest total to 21 wins the round.</li>
     </ul>
   </section>
 </div>
 
-<!----Project creater names ------>
-
+<!-- ===== Credits ===== -->
 <footer>
-    <p> Created by: Niles Brantley, Alex Quiroz,Micah Scott,Shomarr Warner, Kadish James</p>
+  <p>Created by: Niles Brantley, Alex Quiroz, Micah Scott, Shomarr Warner, Kadish James</p>
+</footer>
 
-<!-- Background Music -->
+<!-- ===== Background Music ===== -->
 <audio id="bgm" preload="auto" loop>
-  <source src="https://www.orangefreesounds.com/wp-content/uploads/2014/10/Mario-theme-song.mp3" type="audio/mpeg">
+  <source src="assets/mario-theme.mp3" type="audio/mpeg">
 </audio>
 
+<!-- ===== JavaScript ===== -->
 <script src="script.js"></script>
+
