@@ -9,15 +9,22 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
+
+/* 🔧 Replaced external texture with local GitHub asset */
 body::before {
   content: '';
-  position: fixed; inset: 0;
-  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  position: fixed; 
+  inset: 0;
+  background: url('assets/stardust.png');
   animation: starsMove 120s linear infinite;
   opacity: 0.35;
   z-index: -1;
 }
-@keyframes starsMove { from { background-position: 0 0; } to { background-position: 3000px 3000px; } }
+
+@keyframes starsMove { 
+  from { background-position: 0 0; } 
+  to { background-position: 3000px 3000px; } 
+}
 
 h1.title {
   font-size: 64px;
@@ -25,6 +32,7 @@ h1.title {
   text-shadow: 4px 4px 0 #ff0000, 8px 8px 0 #000;
   margin: 40px 0 10px;
 }
+
 .card {
   background: rgba(0, 0, 0, 0.6);
   border: 4px dashed gold;
@@ -34,6 +42,7 @@ h1.title {
   width: min(900px, 90%);
   box-shadow: 0 0 40px #ffcc0044;
 }
+
 .center { text-align: center; }
 
 /* Buttons */
@@ -44,6 +53,7 @@ button {
   border: none;
   transition: all 0.25s ease;
 }
+
 .play-btn {
   background: linear-gradient(145deg, #ff4b4b, #cc0000);
   box-shadow: 0 0 15px #ff0000;
@@ -52,12 +62,17 @@ button {
   text-transform: uppercase;
   padding: 12px 24px;
 }
+
 .Deal-Button { background: linear-gradient(145deg, #2ecc71, #27ae60); box-shadow: 0 0 15px #00ff66; }
 .Pass-Button { background: linear-gradient(145deg, #ff9933, #e67e22); box-shadow: 0 0 15px #ffcc00; }
 .Stand-Button { background: linear-gradient(145deg, #5dade2, #3498db); box-shadow: 0 0 15px #00ccff; }
 .Restart-Button { background: linear-gradient(145deg, #ffb6c1, #ff69b4); box-shadow: 0 0 15px #ff66cc; }
 .Return-Button { background: linear-gradient(145deg, #ffcc33, #e5a100); box-shadow: 0 0 15px #ffd700; }
-button:hover { transform: scale(1.1); filter: brightness(1.2); }
+
+button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
 
 /* Players */
 #players {
@@ -66,6 +81,7 @@ button:hover { transform: scale(1.1); filter: brightness(1.2); }
   gap: 25px;
   flex-wrap: wrap;
 }
+
 .player {
   background: rgba(255,255,255,0.1);
   border: 2px solid gold;
@@ -73,6 +89,7 @@ button:hover { transform: scale(1.1); filter: brightness(1.2); }
   width: 200px;
   padding: 10px;
 }
+
 .cards img {
   width: 65px;
   height: 95px;
@@ -82,7 +99,10 @@ button:hover { transform: scale(1.1); filter: brightness(1.2); }
   transform: translateY(-20px);
   animation: cardFly 0.5s forwards ease-out;
 }
-@keyframes cardFly { to { opacity: 1; transform: translateY(0); } }
+
+@keyframes cardFly { 
+  to { opacity: 1; transform: translateY(0); } 
+}
 
 /* Star Ratings */
 .stars {
@@ -92,13 +112,16 @@ button:hover { transform: scale(1.1); filter: brightness(1.2); }
   gap: 8px;
   margin-bottom: 10px;
 }
+
 .stars input { display: none; }
+
 .stars label {
   font-size: 2em;
   color: #ccc;
   cursor: pointer;
   transition: color 0.25s ease, transform 0.15s ease;
 }
+
 .stars label.hovered,
 .stars label.selected {
   color: gold;
@@ -117,6 +140,7 @@ textarea {
   background: rgba(255,255,255,0.9);
   color: #111;
 }
+
 .submit-btn {
   background: gold;
   color: #111;
@@ -126,63 +150,47 @@ textarea {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.submit-btn:hover { filter: brightness(1.1); transform: scale(1.05); }
+
+.submit-btn:hover { 
+  filter: brightness(1.1); 
+  transform: scale(1.05); 
+}
+
 .review-item {
   border-top: 1px solid rgba(255,255,255,0.2);
   padding: 10px 0;
 }
+
 .review-item time {
   display: block;
   font-size: 12px;
   opacity: 0.8;
   margin-bottom: 4px;
 }
+
 .music-control { margin: 15px; }
+
 .music-control button {
   background: linear-gradient(145deg, #3498db, #1f618d);
   box-shadow: 0 0 10px #00aaff;
   color: white;
   padding: 8px 16px;
 }
-/* ===== MUSIC TOGGLE STATES ===== */
-.music-control {
-  text-align: center;
-  margin: 10px 0 20px;
-}
 
-.music-control button {
-  background: linear-gradient(145deg, #3498db, #1f618d);
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #00aaff; /* ✨ Keep your glowing edge */
-}
-
-.music-control button:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-  box-shadow: 0 0 20px #00ccff;
-}
-
-/* When the music is ON */
+/* ===== MUSIC BUTTON STATES ===== */
 .music-on {
   background: linear-gradient(145deg, #00ff99, #00cc66);
   box-shadow: 0 0 15px #00ffcc;
   color: #000;
 }
 
-/* When the music is OFF */
 .music-off {
   background: linear-gradient(145deg, #ff4b4b, #cc0000);
   box-shadow: 0 0 15px #ff6666;
   color: #fff;
 }
-/* ===== Player Title and Spinning Character Styles ===== */
+
+/* Player Titles & Avatars */
 .player-title {
   display: flex;
   align-items: center;
@@ -192,7 +200,7 @@ textarea {
   text-shadow: 0 0 8px #000, 0 0 10px gold;
 }
 
-/* Each character floats and spins */
+/* Characters Spin + Float */
 .spin-char {
   width: 70px;
   height: 70px;
@@ -204,8 +212,3 @@ textarea {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Hover effect for fun */
-.spin-char:hover {
-  transform: scale(1.15) rotateY(360deg);
-  filter: drop-shadow(0 0 25px #fff9c4);
-}
