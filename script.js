@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* === MUSIC === */
   const bgm = document.getElementById("bgm");
-  let musicOn = false; // ? Start OFF
+  let musicOn = false;
   bgm.volume = 0.4;
 
   // --- Safe playback after user gesture ---
   const tryPlay = () => {
-    bgm.play().catch(() => console.log("? Waiting for user gesture to start audio"));
+    bgm.play().catch(() => console.log("Waiting for user gesture to start audio"));
   };
   document.addEventListener("click", tryPlay, { once: true });
   document.addEventListener("keydown", tryPlay, { once: true });
@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   musicToggleGame.style.display = "none";
   document.body.appendChild(musicToggleGame);
 
-  // --- Shared Toggle Logic ---
   function toggleMusic(btn) {
     musicOn = !musicOn;
     if (musicOn) {
@@ -31,21 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.textContent = "⏸ Stop Music";
       bgm.loop = true;
       musicToggleFront.classList.add("music-on");
-      musicToggleFront.classList.remove("music-off");
       musicToggleGame.classList.add("music-on");
+      musicToggleFront.classList.remove("music-off");
       musicToggleGame.classList.remove("music-off");
     } else {
       bgm.pause();
       bgm.currentTime = 0;
       btn.textContent = "▶ Play Music";
       musicToggleFront.classList.add("music-off");
-      musicToggleFront.classList.remove("music-on");
       musicToggleGame.classList.add("music-off");
+      musicToggleFront.classList.remove("music-on");
       musicToggleGame.classList.remove("music-on");
     }
   }
 
-  // --- Button Events ---
   musicToggleFront.addEventListener("click", () => toggleMusic(musicToggleFront));
   musicToggleGame.addEventListener("click", () => toggleMusic(musicToggleGame));
 
@@ -103,8 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
     div.innerHTML = `
       <time>${new Date(ts).toLocaleString()}</time>
       <div class="review-stars">${"&#9733;".repeat(rate)}${"&#9734;".repeat(
-      5 - rate
-    )}</div>
+        5 - rate
+      )}</div>
       <p>${text}</p>
     `;
     list.prepend(div);
@@ -145,13 +143,17 @@ document.addEventListener("DOMContentLoaded", () => {
       r = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
     deck = [];
     for (let rr of r)
-      for (let ss of s)
+      for (let ss of s) {
+        // FIX 10-card image path
+        let imgRank = rr === "10" ? "0" : rr;
+
         deck.push({
           r: rr,
           s: ss,
           value: ["J", "Q", "K"].includes(rr) ? 10 : rr === "A" ? 1 : parseInt(rr),
-          img: `https://deckofcardsapi.com/static/img/${rr}${ss}.png`,
+          img: `https://deckofcardsapi.com/static/img/${imgRank}${ss}.png`,
         });
+      }
     deck.sort(() => Math.random() - 0.5);
   }
 
@@ -159,14 +161,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return deck.pop();
   }
 
+  /* === Updated Player Avatars (Use local assets folder) === */
   function setupPlayers() {
     players = [
-      { id: "player1", name: "Mario", cards: [], total: 0, stand: false },
-      { id: "player2", name: "Luigi", cards: [], total: 0, stand: false },
-      { id: "player3", name: "Yoshi", cards: [], total: 0, stand: false },
-      { id: "dealer", name: "Dealer", cards: [], total: 0, stand: false },
+      { id: "player1", name: "Mario", avatar: "assets/mario.png", cards: [], total: 0, stand: false },
+      { id: "player2", name: "Luigi", avatar: "assets/luigi.png", cards: [], total: 0, stand: false },
+      { id: "player3", name: "Yoshi", avatar: "assets/yoshi.png", cards: [], total: 0, stand: false },
+      { id: "dealer", name: "Dealer", avatar: "assets/dealer-peach.png", cards: [], total: 0, stand: false },
     ];
     current = 0;
+
+    // Set avatars in the DOM
+    players.forEach(p => {
+      const img = document.querySelector(`#${p.id} .player-title img`);
+      img.src = p.avatar;
+    });
   }
 
   function updateDisplay() {
@@ -186,13 +195,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("dealBtn").onclick = () => {
     const p = players[current];
     if (p.stand) return;
+
     const c = drawCard();
     p.cards.push(c);
     p.total += c.value;
     updateDisplay();
-    msg.textContent =
-      p.total > 21 ? `? ${p.name} Loses!` : `? ${p.name} drew a card!`;
-    if (p.total > 21) p.stand = true;
+
+    if (p.total > 21) {
+      msg.textContent = `💥 ${p.name} Loses!`;
+      p.stand = true;
+    } else {
+      msg.textContent = `🃏 ${p.name} drew a card!`;
+    }
   };
 
   document.getElementById("passBtn").onclick = () => {
@@ -202,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("standBtn").onclick = () => {
     players[current].stand = true;
-    msg.textContent = `? ${players[current].name} stands.`;
+    msg.textContent = `🛑 ${players[current].name} stands.`;
     nextPlayer();
   };
 
@@ -216,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     do {
       current = (current + 1) % players.length;
     } while (players[current].stand);
-    msg.textContent = `? ${players[current].name}'s turn!`;
+    msg.textContent = `🎯 ${players[current].name}'s turn!`;
   }
 
   function endRound() {
@@ -224,14 +238,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let w = null;
     if (v.length > 0) w = v.reduce((a, b) => (a.total > b.total ? a : b));
     msg.textContent = w
-      ? `? ${w.name} wins with ${w.total}!`
-      : `? All players Lose!`;
+      ? `🏆 ${w.name} wins with ${w.total}!`
+      : `💥 All players lose!`;
   }
 
   function startGame() {
     initDeck();
     setupPlayers();
     updateDisplay();
-    msg.textContent = " Game started! Mario’s turn first.";
+    msg.textContent = "🎮 Game started! Mario’s turn first.";
   }
 });
+
