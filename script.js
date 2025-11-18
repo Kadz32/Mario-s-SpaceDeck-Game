@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     p.total += c.value;
     updateDisplay();
     msg.textContent =
-      p.total > 21 ? `? ${p.name} Loose!` : `? ${p.name} drew a card!`;
+      p.total > 21 ? `? ${p.name} Loses!` : `? ${p.name} drew a card!`;
     if (p.total > 21) p.stand = true;
   };
 
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (v.length > 0) w = v.reduce((a, b) => (a.total > b.total ? a : b));
     msg.textContent = w
       ? `? ${w.name} wins with ${w.total}!`
-      : `? All players Loose!`;
+      : `? All players Lose!`;
   }
 
   function startGame() {
