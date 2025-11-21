@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* === Updated Player Avatars (Correct GitHub Paths) === */
   function setupPlayers() {
     players = [
-      { id: "player1", name: "Mario", avatar: "Assets/pngimg.com - mario_PNG125 (1).png", cards: [], total: 0, stand: false },
+      { id: "player1", name: "Mario", avatar: "Assets/mario.png", cards: [], total: 0, stand: false },
       { id: "player2", name: "Luigi", avatar: "Assets/luigi.png", cards: [], total: 0, stand: false },
       { id: "player3", name: "Yoshi", avatar: "Assets/yoshi.png", cards: [], total: 0, stand: false },
       { id: "dealer", name: "Dealer", avatar: "Assets/peach-dealer.png", cards: [], total: 0, stand: false },
