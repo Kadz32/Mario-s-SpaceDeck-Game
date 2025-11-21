@@ -222,3 +222,55 @@ textarea {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+
+/* =======================================================
+   MOBILE RESPONSIVE STYLES
+   Makes the game work on phones (under 600px width)
+   ======================================================= */
+@media (max-width: 600px) {
+
+  h1.title {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .card {
+    width: 95%;
+    padding: 14px;
+    margin: 10px auto;
+  }
+
+  #players {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .player {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .spin-char {
+    width: 52px;
+    height: 52px;
+  }
+
+  .cards img {
+    width: 52px;
+    height: 70px;
+  }
+
+  button {
+    width: 95%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
