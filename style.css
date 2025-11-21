@@ -10,12 +10,12 @@ body {
   overflow-x: hidden;
 }
 
-/* 🔧 Replaced external texture with local GitHub asset */
+/* 🔧 FIXED: Correct folder name = Assets */
 body::before {
   content: '';
   position: fixed; 
   inset: 0;
-  background: url('assets/stardust.png');
+  background: url('Assets/stardust.png');   /* FIXED */
   animation: starsMove 120s linear infinite;
   opacity: 0.35;
   z-index: -1;
