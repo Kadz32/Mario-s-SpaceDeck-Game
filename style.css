@@ -15,7 +15,7 @@ body::before {
   content: '';
   position: fixed; 
   inset: 0;
-  background: url('Assets/stardust.png');   /* FIXED */
+  background: url('Assets/stardust.png');
   animation: starsMove 120s linear infinite;
   opacity: 0.35;
   z-index: -1;
@@ -212,3 +212,13 @@ textarea {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* ⭐ Missing Animations — FIXED */
+@keyframes spinChar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatChar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
