@@ -227,7 +227,7 @@ textarea {
    MOBILE RESPONSIVE STYLES
    Makes the game work on phones (under 600px width)
    ======================================================= */
-@media (max-width: 550px) {
+@media (max-width: 450px) {
 
   h1.title {
     font-size: 32px;
