@@ -10,7 +10,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🔧 FIXED: Correct folder name = Assets */
+/*  Folder name = Assets */
 body::before {
   content: '';
   position: fixed; 
@@ -212,7 +212,7 @@ textarea {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* ⭐ Missing Animations — FIXED */
+/* ⭐ Animations */
 @keyframes spinChar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
