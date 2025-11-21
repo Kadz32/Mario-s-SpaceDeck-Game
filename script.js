@@ -144,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
     deck = [];
     for (let rr of r)
       for (let ss of s) {
-        // FIX 10-card image path
         let imgRank = rr === "10" ? "0" : rr;
 
         deck.push({
@@ -161,17 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return deck.pop();
   }
 
-  /* === Updated Player Avatars (Use local assets folder) === */
+  /* === Updated Player Avatars (Correct GitHub Paths) === */
   function setupPlayers() {
     players = [
-      { id: "player1", name: "Mario", avatar: "assets/mario.png", cards: [], total: 0, stand: false },
-      { id: "player2", name: "Luigi", avatar: "assets/luigi.png", cards: [], total: 0, stand: false },
-      { id: "player3", name: "Yoshi", avatar: "assets/yoshi.png", cards: [], total: 0, stand: false },
-      { id: "dealer", name: "Dealer", avatar: "assets/dealer-peach.png", cards: [], total: 0, stand: false },
+      { id: "player1", name: "Mario", avatar: "Assets/pngimg.com - mario_PNG125 (1).png", cards: [], total: 0, stand: false },
+      { id: "player2", name: "Luigi", avatar: "Assets/luigi.png", cards: [], total: 0, stand: false },
+      { id: "player3", name: "Yoshi", avatar: "Assets/yoshi.png", cards: [], total: 0, stand: false },
+      { id: "dealer", name: "Dealer", avatar: "Assets/peach-dealer.png", cards: [], total: 0, stand: false },
     ];
     current = 0;
 
-    // Set avatars in the DOM
     players.forEach(p => {
       const img = document.querySelector(`#${p.id} .player-title img`);
       img.src = p.avatar;
@@ -249,4 +247,3 @@ document.addEventListener("DOMContentLoaded", () => {
     msg.textContent = "🎮 Game started! Mario’s turn first.";
   }
 });
-
