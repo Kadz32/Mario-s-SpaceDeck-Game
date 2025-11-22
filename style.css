@@ -1,6 +1,12 @@
+/* Import the Mario style font through out the Game */
+
 @import url('https://fonts.cdnfonts.com/css/super-mario-256');
 
-/* Background */
+/* =======================================================
+Main Page Background & Text
+Sets the galaxy background, text color and overall layout
+===========================================================*/
+
 body {
   font-family: 'Super Mario 256', sans-serif;
   background: radial-gradient(circle at 50% 50%, #000010, #001033 80%, #000 100%);
@@ -10,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-/*  Folder name = Assets */
+/*  Layer of moving stars placed behind everything */
 body::before {
   content: '';
   position: fixed; 
@@ -21,10 +27,16 @@ body::before {
   z-index: -1;
 }
 
+/* Slow drifting star animation */
 @keyframes starsMove { 
   from { background-position: 0 0; } 
   to { background-position: 3000px 3000px; } 
 }
+
+/*============================
+Main Title Styling
+Big gold Mario-style page Title
+================================*/
 
 h1.title {
   font-size: 64px;
@@ -32,6 +44,11 @@ h1.title {
   text-shadow: 4px 4px 0 #ff0000, 8px 8px 0 #000;
   margin: 40px 0 10px;
 }
+
+/* ========================================
+Card style containers
+Used for home screen, rules and reviews
+===========================================*/
 
 .card {
   background: rgba(0, 0, 0, 0.6);
@@ -45,7 +62,11 @@ h1.title {
 
 .center { text-align: center; }
 
-/* Buttons */
+/* =========================
+Buttons - Global styles
+Shared button animation & MArio Font
+================================*/
+
 button {
   font-family: 'Super Mario 256', sans-serif;
   cursor: pointer;
@@ -53,6 +74,8 @@ button {
   border: none;
   transition: all 0.25s ease;
 }
+
+/* Home Screen Play Button */
 
 .play-btn {
   background: linear-gradient(145deg, #ff4b4b, #cc0000);
@@ -63,24 +86,31 @@ button {
   padding: 12px 24px;
 }
 
+/* Individual button themes for game controls */
+
 .Deal-Button { background: linear-gradient(145deg, #2ecc71, #27ae60); box-shadow: 0 0 15px #00ff66; }
 .Pass-Button { background: linear-gradient(145deg, #ff9933, #e67e22); box-shadow: 0 0 15px #ffcc00; }
 .Stand-Button { background: linear-gradient(145deg, #5dade2, #3498db); box-shadow: 0 0 15px #00ccff; }
 .Restart-Button { background: linear-gradient(145deg, #ffb6c1, #ff69b4); box-shadow: 0 0 15px #ff66cc; }
 .Return-Button { background: linear-gradient(145deg, #ffcc33, #e5a100); box-shadow: 0 0 15px #ffd700; }
 
+
+/* Hover animation for all buttons */
 button:hover {
   transform: scale(1.1);
   filter: brightness(1.2);
 }
 
-/* Players */
+/* Layout for player containers */
+
 #players {
   display: flex;
   justify-content: center;
   gap: 25px;
   flex-wrap: wrap;
 }
+
+/* Player window styling */
 
 .player {
   background: rgba(255,255,255,0.1);
@@ -90,6 +120,7 @@ button:hover {
   padding: 10px;
 }
 
+/* Card animation when drawn */
 .cards img {
   width: 65px;
   height: 95px;
@@ -100,11 +131,15 @@ button:hover {
   animation: cardFly 0.5s forwards ease-out;
 }
 
+/* Smooth card drop animation */
 @keyframes cardFly { 
   to { opacity: 1; transform: translateY(0); } 
 }
 
-/* Star Ratings */
+/*====== Star Ratings Widjet=========== */
+
+/* Layout for star rating row */
+
 .stars {
   display: flex;
   flex-direction: row-reverse;
@@ -113,7 +148,12 @@ button:hover {
   margin-bottom: 10px;
 }
 
+/* Hide radio buttons (only show stars) */
+
 .stars input { display: none; }
+
+
+/* Visual star styling */
 
 .stars label {
   font-size: 2em;
@@ -122,13 +162,20 @@ button:hover {
   transition: color 0.25s ease, transform 0.15s ease;
 }
 
+/* Hover and selected star colors */
+
 .stars label.hovered,
 .stars label.selected {
   color: gold;
   transform: scale(1.1);
 }
 
-/* Reviews */
+/*=============
+Review Section
+================*/
+
+
+/* Review text input */
 textarea {
   width: 100%;
   min-height: 90px;
@@ -140,6 +187,8 @@ textarea {
   background: rgba(255,255,255,0.9);
   color: #111;
 }
+
+/* Submit review button */
 
 .submit-btn {
   background: gold;
@@ -156,6 +205,7 @@ textarea {
   transform: scale(1.05); 
 }
 
+/* Review items formatting */
 .review-item {
   border-top: 1px solid rgba(255,255,255,0.2);
   padding: 10px 0;
@@ -168,7 +218,12 @@ textarea {
   margin-bottom: 4px;
 }
 
+/* ========Music Toggle Buttons======== */
+
 .music-control { margin: 15px; }
+
+
+/*Base music button design */
 
 .music-control button {
   background: linear-gradient(145deg, #3498db, #1f618d);
@@ -177,12 +232,14 @@ textarea {
   padding: 8px 16px;
 }
 
-/* ===== MUSIC BUTTON STATES ===== */
+/* Music On appearance  */
 .music-on {
   background: linear-gradient(145deg, #00ff99, #00cc66);
   box-shadow: 0 0 15px #00ffcc;
   color: #000;
 }
+
+/*Music Off appearance */
 
 .music-off {
   background: linear-gradient(145deg, #ff4b4b, #cc0000);
@@ -190,7 +247,7 @@ textarea {
   color: #fff;
 }
 
-/* Player Titles & Avatars */
+/* Player Titles & Characters aligned */
 .player-title {
   display: flex;
   align-items: center;
@@ -200,7 +257,7 @@ textarea {
   text-shadow: 0 0 8px #000, 0 0 10px gold;
 }
 
-/* Characters Spin + Float */
+/* Characters icons Spinning + Floating animations */
 .spin-char {
   width: 70px;
   height: 70px;
@@ -212,22 +269,23 @@ textarea {
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* ⭐ Animations */
+/* Full rotation animations */
 @keyframes spinChar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
+/* Up and down float animation */
 @keyframes floatChar {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-/* =======================================================
-   MOBILE RESPONSIVE STYLES
-   Makes the game work on phones (under 600px width)
-   ======================================================= */
-@media (max-width: 450px) {
+/* =================================================
+   MOBILE View (under 600px width)
+   Keeps Layout readable on phone
+   ==================================================*/
+@media (max-width: 600px) {
 
   h1.title {
     font-size: 32px;
