@@ -1,30 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* === MUSIC === */
+  
+  
+  /* =================== 
+  Background Music Setup
+  Handles auto play, volume and the two toggle buttons.
+  =====================*/
+  
   const bgm = document.getElementById("bgm");
   let musicOn = false;
   bgm.volume = 0.4;
 
-  // --- Safe playback after user gesture ---
+  // --- Start audio after user click or press a key ---
   const tryPlay = () => {
     bgm.play().catch(() => console.log("Waiting for user gesture to start audio"));
   };
   document.addEventListener("click", tryPlay, { once: true });
   document.addEventListener("keydown", tryPlay, { once: true });
 
-  // --- Music Toggle Buttons (Front + Game) ---
+  // --- Music Toggle Buttons (On the Home Screen) ---
   const musicToggleFront = document.createElement("button");
   musicToggleFront.textContent = "▶ Play Music";
   musicToggleFront.className = "music-control-btn music-off";
   document.body.appendChild(musicToggleFront);
 
+  
+//----Music button that shows only during the game ---
   const musicToggleGame = document.createElement("button");
   musicToggleGame.textContent = "▶ Play Music";
   musicToggleGame.className = "music-control-btn music-off";
   musicToggleGame.style.display = "none";
   document.body.appendChild(musicToggleGame);
 
+  
+// Turn music on/off and update both buttons
   function toggleMusic(btn) {
     musicOn = !musicOn;
+    
     if (musicOn) {
       bgm.play();
       btn.textContent = "⏸ Stop Music";
@@ -33,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
       musicToggleGame.classList.add("music-on");
       musicToggleFront.classList.remove("music-off");
       musicToggleGame.classList.remove("music-off");
-    } else {
+    } 
+    else {
       bgm.pause();
       bgm.currentTime = 0;
       btn.textContent = "▶ Play Music";
@@ -43,14 +55,21 @@ document.addEventListener("DOMContentLoaded", () => {
       musicToggleGame.classList.remove("music-on");
     }
   }
-
+  
+//Event listeners for both music buttons
   musicToggleFront.addEventListener("click", () => toggleMusic(musicToggleFront));
   musicToggleGame.addEventListener("click", () => toggleMusic(musicToggleGame));
 
-  /* === PAGE SWITCH === */
+  /* =====================
+  Page Switching (Home Screen & Game Screen)
+  Controls what screen the player sees
+  ======================*/
   const home = document.getElementById("home-screen");
   const game = document.getElementById("game-screen");
 
+  
+//Move into the game screen
+  
   document.getElementById("playBtn").onclick = () => {
     home.style.display = "none";
     game.style.display = "block";
@@ -59,7 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
     tryPlay();
     startGame();
   };
-
+  
+// Return back to the home screen
+  
   document.getElementById("returnBtn").onclick = () => {
     game.style.display = "none";
     home.style.display = "block";
@@ -69,14 +90,20 @@ document.addEventListener("DOMContentLoaded", () => {
     bgm.pause();
   };
 
-  /* === REVIEWS === */
+  /* ==================
+  Reveiw System
+  Handles star selection, saving and loading reviews
+  ===================== */
+  
   const KEY = "spaceDeckReviews";
   const stars = document.querySelectorAll(".stars label");
   const inputs = document.querySelectorAll(".stars input");
   const list = document.getElementById("reviewList");
   const input = document.getElementById("reviewInput");
   const btn = document.getElementById("submitReview");
-
+  
+//Star hover effect the visual part
+  
   stars.forEach((star, i) => {
     star.addEventListener("mouseover", () => {
       stars.forEach((s, j) =>
@@ -88,6 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
+  // When selecting a star rating, keep it highlighted
+  
   inputs.forEach((inp) => {
     inp.addEventListener("change", () => {
       const v = parseInt(inp.value);
@@ -95,6 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  //Creates a review box after it is written
+  
   function addReviewDOM(text, ts, rate) {
     const div = document.createElement("div");
     div.className = "review-item";
@@ -108,18 +139,21 @@ document.addEventListener("DOMContentLoaded", () => {
     list.prepend(div);
   }
 
+  //Load saved reviews from local storage
   function loadReviews() {
     (JSON.parse(localStorage.getItem(KEY) || "[]")).forEach((r) =>
       addReviewDOM(r.text, r.ts, r.rate)
     );
   }
 
+  // Save a new review
   function saveReview(t, r) {
     const d = JSON.parse(localStorage.getItem(KEY) || "[]");
     d.unshift({ text: t, rate: r, ts: Date.now() });
     localStorage.setItem(KEY, JSON.stringify(d));
   }
 
+  // Handle clicking the review submit button
   btn.onclick = () => {
     const t = input.value.trim(),
       r = document.querySelector('input[name="rating"]:checked');
@@ -132,16 +166,22 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   loadReviews();
 
-  /* === GAME LOGIC === */
+  /* =============
+  Main Game Logic
+  Controls the deck, turns, scoring and winning
+  ================ */
   let deck = [],
     players = [],
     current = 0;
   const msg = document.getElementById("message");
 
+
+//Creates a full deck of cards
   function initDeck() {
     const s = ["H", "D", "C", "S"],
       r = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
     deck = [];
+    
     for (let rr of r)
       for (let ss of s) {
         let imgRank = rr === "10" ? "0" : rr;
@@ -153,14 +193,18 @@ document.addEventListener("DOMContentLoaded", () => {
           img: `https://deckofcardsapi.com/static/img/${imgRank}${ss}.png`,
         });
       }
+
+    // Simple shuffle
     deck.sort(() => Math.random() - 0.5);
   }
 
+  // Pulls a card from the deck
   function drawCard() {
     return deck.pop();
   }
 
-  /* === Updated Player Avatars (Correct GitHub Paths) === */
+
+  //Setup Players and their Characters
   function setupPlayers() {
     players = [
       { id: "player1", name: "Mario", avatar: "Assets/mario.png", cards: [], total: 0, stand: false },
@@ -170,12 +214,14 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     current = 0;
 
+    //Update character images shown on screen
     players.forEach(p => {
       const img = document.querySelector(`#${p.id} .player-title img`);
       img.src = p.avatar;
     });
   }
 
+  //Update the onscreen card visuals and totals
   function updateDisplay() {
     players.forEach((p) => {
       const cdiv = document.querySelector(`#${p.id} .cards`);
@@ -190,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  //Draw a Card
   document.getElementById("dealBtn").onclick = () => {
     const p = players[current];
     if (p.stand) return;
@@ -207,19 +254,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  //Skip turn
   document.getElementById("passBtn").onclick = () => {
     msg.textContent = `⏭ ${players[current].name} passes.`;
     nextPlayer();
   };
 
+  //Stop drawing cards
   document.getElementById("standBtn").onclick = () => {
     players[current].stand = true;
     msg.textContent = `🛑 ${players[current].name} stands.`;
     nextPlayer();
   };
 
+  //Restart the game round
   document.getElementById("restartBtn").onclick = startGame;
 
+  
+//Move to the next available player
   function nextPlayer() {
     if (players.every((p) => p.stand)) {
       endRound();
@@ -231,15 +283,21 @@ document.addEventListener("DOMContentLoaded", () => {
     msg.textContent = `🎯 ${players[current].name}'s turn!`;
   }
 
+
+ //Determine winner 
   function endRound() {
     const v = players.filter((p) => p.total <= 21);
     let w = null;
+    
     if (v.length > 0) w = v.reduce((a, b) => (a.total > b.total ? a : b));
+    
     msg.textContent = w
       ? `🏆 ${w.name} wins with ${w.total}!`
       : `💥 All players lose!`;
   }
 
+  
+/*========Start the Game=======*/
   function startGame() {
     initDeck();
     setupPlayers();
