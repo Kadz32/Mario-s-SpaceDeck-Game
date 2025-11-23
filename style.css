@@ -45,6 +45,25 @@ h1.title {
   margin: 40px 0 10px;
 }
 
+/* =====================================================
+   GAME LOGO — Shown on home + gameplay screens
+===================================================== */
+.game-logo {
+  width: 90%;
+  max-width: 650px;
+  margin: 20px auto 10px;
+  display: block;
+  filter: drop-shadow(0 0 25px gold);
+  animation: logoFade 1.4s ease-out forwards;
+}
+
+/* Logo fade and scale animation */
+@keyframes logoFade {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+
 /* ========================================
 Card style containers
 Used for home screen, rules and reviews
