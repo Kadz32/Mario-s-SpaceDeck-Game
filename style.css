@@ -312,7 +312,7 @@ textarea {
     transform-origin: top center;
   }
 
-  /* shrink home screen a bit */
+  /* shrink home screen */
   #home-screen {
     transform: scale(0.9);
     transform-origin: top center;
