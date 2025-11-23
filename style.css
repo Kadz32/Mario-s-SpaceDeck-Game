@@ -49,8 +49,8 @@ h1.title {
    GAME LOGO — Shown on home + gameplay screens
 ===================================================== */
 .game-logo {
-  width: 90%;
-  max-width: 650px;
+  width: 35%;
+  max-width: 220px;
   margin: 20px auto 10px;
   display: block;
   filter: drop-shadow(0 0 25px gold);
@@ -305,6 +305,10 @@ textarea {
    Keeps Layout readable on phone
    ==================================================*/
 @media (max-width: 600px) {
+  .game-logo{
+    width: 60%;
+    max-width: 200px;
+  }
 
   h1.title {
     font-size: 32px;
