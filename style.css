@@ -305,23 +305,40 @@ textarea {
    Keeps Layout readable on phone
    ==================================================*/
 @media (max-width: 450px) {
+
+  /* shrink the entire gameplay screen */
+  #game-screen {
+    transform: scale(0.78);   /* adjust smaller or bigger */
+    transform-origin: top center;
+  }
+
+  /* shrink home screen a bit */
+  #home-screen {
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+
+  /* logo scaling */
   .game-logo{
     width: 60px;
     max-width: 28vw;
     margin: 10px auto;
   }
 
+  /* title shrink */
   h1.title {
     font-size: 32px;
     line-height: 38px;
   }
 
+  /* card layout adjustments */
   .card {
     width: 95%;
     padding: 14px;
     margin: 10px auto;
   }
 
+  /* players stack vertically */
   #players {
     flex-direction: column;
     gap: 18px;
@@ -332,16 +349,19 @@ textarea {
     margin: 0 auto;
   }
 
+  /* smaller character avatars */
   .spin-char {
     width: 52px;
     height: 52px;
   }
 
+  /* smaller playing cards */
   .cards img {
     width: 52px;
     height: 70px;
   }
 
+  /* button shrink */
   button {
     width: 95%;
     padding: 12px;
@@ -349,6 +369,7 @@ textarea {
     margin-bottom: 10px;
   }
 
+  /* stack buttons vertically */
   .button-container {
     display: flex;
     flex-direction: column;
