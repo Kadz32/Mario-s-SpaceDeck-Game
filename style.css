@@ -301,13 +301,14 @@ textarea {
 }
 
 /* =================================================
-   MOBILE View (under 600px width)
+   MOBILE View (under 450px width)
    Keeps Layout readable on phone
    ==================================================*/
-@media (max-width: 600px) {
+@media (max-width: 450px) {
   .game-logo{
-    width: 60%;
-    max-width: 200px;
+    width: 60px;
+    max-width: 28vw;
+    margin: 10px auto;
   }
 
   h1.title {
